@@ -1,17 +1,19 @@
-drop table if exists message;
-drop table if exists account;
-create table account (
-    account_id int primary key auto_increment,
-    username varchar(255) unique,
-    password varchar(255)
-);
-create table message (
-    message_id int primary key auto_increment,
-    posted_by int,
-    message_text varchar(255),
-    time_posted_epoch bigint,
-    foreign key (posted_by) references  account(account_id)
+DROP TABLE IF EXISTS MESSAGE;
+DROP TABLE IF EXISTS ACCOUNT; 
+
+CREATE TABLE ACCOUNT ( 
+    account_id INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(255) UNIQUE,
+    password VARCHAR(255)
 );
 
-insert into account (username, password) values ('testuser1', 'password');
-insert into message (posted_by, message_text, time_posted_epoch) values (1,'test message 1',1669947792);
+CREATE TABLE MESSAGE ( 
+    message_id INT PRIMARY KEY AUTO_INCREMENT,
+    posted_by INT,
+    message_text VARCHAR(255),
+    time_posted_epoch BIGINT,
+    FOREIGN KEY (posted_by) REFERENCES Account(account_id) 
+);
+
+INSERT INTO ACCOUNT (username, password) VALUES ('testuser1', 'password'); 
+INSERT INTO MESSAGE (posted_by, message_text, time_posted_epoch) VALUES (1, 'test message 1', 1669947792); 
